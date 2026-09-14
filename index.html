@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tanzila Tabassum — Cybersecurity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #101820;
+    --panel: #16212C;
+    --text: #E9EDF1;
+    --muted: #8FA1AF;
+    --accent: #4FB3A9;
+    --warm: #D98E4A;
+    --line: #24313D;
+    --maxw: 920px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'IBM Plex Sans', sans-serif;
+    line-height:1.6;
+    font-size:16px;
+  }
+  h1,h2,h3{
+    font-family:'Newsreader', serif;
+    font-weight:500;
+    margin:0 0 0.4em 0;
+    letter-spacing:0.2px;
+  }
+  a{color:var(--accent); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--accent); outline-offset:3px;}
+
+  .layout{
+    display:grid;
+    grid-template-columns: 260px 1fr;
+    max-width: 1180px;
+    margin:0 auto;
+  }
+
+  /* Left rail */
+  .rail{
+    position:sticky;
+    top:0;
+    align-self:start;
+    height:100vh;
+    padding: 48px 32px;
+    border-right:1px solid var(--line);
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+  }
+  .rail-top .photo{
+    width:96px;
+    height:96px;
+    border-radius:50%;
+    object-fit:cover;
+    margin-bottom:1.4rem;
+    border:1px solid var(--line);
+    display:block;
+  }
+  .rail-top .name{
+    font-size:1.5rem;
+    line-height:1.25;
+    margin-bottom:0.15em;
+  }
+  .rail-top .role{
+    color:var(--accent);
+    font-size:0.92rem;
+    margin-bottom:2rem;
+  }
+  .rail nav{
+    display:flex;
+    flex-direction:column;
+    gap:0.65rem;
+  }
+  .rail nav a{
+    color:var(--muted);
+    font-size:0.92rem;
+  }
+  .rail nav a:hover{ color:var(--text); text-decoration:none; }
+  .rail-bottom{
+    display:flex;
+    flex-direction:column;
+    gap:0.5rem;
+    font-size:0.85rem;
+  }
+  .rail-bottom a{ color:var(--muted); }
+  .rail-bottom a:hover{ color:var(--accent); text-decoration:none; }
+
+  /* Main content */
+  main{ padding: 64px 56px 120px; max-width: var(--maxw); }
+  section{ margin-bottom: 5rem; }
+  section:first-of-type{ margin-top:0; }
+
+  .kicker{
+    color:var(--muted);
+    font-size:0.85rem;
+    margin-bottom:0.9rem;
+  }
+
+  /* Hero */
+  .hero h1{
+    font-size: 2.6rem;
+    max-width: 14ch;
+  }
+  .hero p.statement{
+    font-size:1.08rem;
+    color:var(--muted);
+    max-width: 56ch;
+    margin-top:1rem;
+  }
+  .hero .cta-row{
+    margin-top:2rem;
+    display:flex;
+    gap:1.2rem;
+    flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-block;
+    padding:0.65em 1.3em;
+    border:1px solid var(--accent);
+    border-radius:2px;
+    color:var(--accent);
+    font-size:0.92rem;
+  }
+  .btn:hover{ background:var(--accent); color:var(--bg); text-decoration:none; }
+  .btn.ghost{ border-color:var(--line); color:var(--muted); }
+  .btn.ghost:hover{ border-color:var(--muted); background:transparent; color:var(--text); }
+
+  /* Project entries */
+  .entry{
+    border-left:2px solid var(--line);
+    padding-left:1.6rem;
+    margin-bottom:2.6rem;
+    position:relative;
+  }
+  .entry.featured{ border-left-color: var(--warm); }
+  .entry h3{ font-size:1.3rem; color:var(--text); }
+  .entry .meta{
+    color:var(--muted);
+    font-size:0.85rem;
+    margin-bottom:0.8rem;
+  }
+  .entry .meta.warm{ color: var(--warm); }
+  .entry p{ margin:0.4rem 0; color:var(--text); max-width:65ch; }
+  .entry .links{ margin-top:0.8rem; font-size:0.9rem; }
+  .entry .links a{ margin-right:1.2rem; }
+  .tag-row{ margin-top:0.8rem; display:flex; flex-wrap:wrap; gap:0.5rem; }
+  .tag{
+    font-size:0.78rem;
+    color:var(--muted);
+    border:1px solid var(--line);
+    padding:0.2em 0.7em;
+    border-radius:2px;
+  }
+
+  /* Beyond work */
+  .beyond-grid{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.6rem 2.5rem;
+  }
+  .beyond-item h4{
+    font-family:'IBM Plex Sans', sans-serif;
+    font-weight:600;
+    font-size:0.95rem;
+    color:var(--text);
+    margin:0 0 0.5rem 0;
+  }
+  .beyond-item p{ margin:0; color:var(--muted); font-size:0.92rem; }
+  .skill-row{ display:flex; align-items:baseline; gap:1.5rem; flex-wrap:wrap; }
+  .skill-row .cat{
+    flex:0 0 150px;
+    color:var(--muted);
+    font-size:0.85rem;
+    padding-top:0.3rem;
+  }
+  .skill-row .pills{
+    flex:1;
+    min-width:220px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:0.6rem;
+  }
+  .pill{
+    font-size:0.88rem;
+    color:var(--text);
+    padding:0.4em 0.9em;
+    border-radius:999px;
+    border:1px solid var(--line);
+    background:transparent;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+  .skill-row:nth-child(odd) .pill:hover{ border-color:var(--accent); color:var(--accent); }
+  .skill-row:nth-child(even) .pill:hover{ border-color:var(--warm); color:var(--warm); }
+
+  /* Experience timeline */
+  .timeline-item{
+    display:grid;
+    grid-template-columns: 130px 1fr;
+    gap:1.5rem;
+    padding:1.4rem 0;
+    border-top:1px solid var(--line);
+  }
+  .timeline-item:last-child{ border-bottom:1px solid var(--line); }
+  .timeline-item .when{ color:var(--muted); font-size:0.85rem; padding-top:0.15rem; }
+  .timeline-item h4{
+    font-family:'IBM Plex Sans', sans-serif;
+    font-weight:600;
+    font-size:1rem;
+    margin:0 0 0.2rem 0;
+  }
+  .timeline-item .org{ color:var(--accent); font-size:0.88rem; margin-bottom:0.5rem; }
+  .timeline-item p{ margin:0; color:var(--muted); font-size:0.92rem; max-width:60ch; }
+
+  /* Contact */
+  .contact p{ color:var(--muted); max-width:50ch; }
+  .contact-links{ margin-top:1.5rem; display:flex; gap:1.5rem; flex-wrap:wrap; }
+
+  footer{
+    padding: 2rem 56px 3rem;
+    color:var(--muted);
+    font-size:0.8rem;
+    border-top:1px solid var(--line);
+    max-width: var(--maxw);
+    margin: 0 56px;
+  }
+
+  @media (max-width: 860px){
+    .layout{ grid-template-columns: 1fr; }
+    .rail{
+      position:static;
+      height:auto;
+      flex-direction:row;
+      justify-content:space-between;
+      align-items:center;
+      padding: 24px;
+      border-right:none;
+      border-bottom:1px solid var(--line);
+    }
+    .rail nav{ display:none; }
+    .rail-bottom{ flex-direction:row; gap:1rem; }
+    main{ padding: 40px 24px 80px; }
+    .hero h1{ font-size:2rem; }
+    .skill-row{ flex-direction:column; gap:0.6rem; }
+    .skill-row .cat{ flex:none; }
+    .beyond-grid{ grid-template-columns: 1fr; }
+    .timeline-item{ grid-template-columns: 1fr; gap:0.3rem; }
+    footer{ margin:0 24px; padding: 2rem 0 3rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+  <aside class="rail">
+    <div class="rail-top">
+      <img class="photo" src="profile.jpg" alt="Tanzila Tabassum">
+      <div class="name">Tanzila Tabassum</div>
+      <div class="role">Cybersecurity — GRC · Cloud Security · ML</div>
+      <nav>
+        <a href="#work">Work</a>
+        <a href="#publications">Publications</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#beyond">Beyond work</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+    <div class="rail-bottom">
+      <a href="https://github.com/tanzila-tabassum" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://linkedin.com/in/tanzilaspeaking" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:tanzila.tabassum.una@gmail.com">Email</a>
+    </div>
+  </aside>
+
+  <main>
+
+    <section class="hero">
+      <p class="kicker">Philadelphia, PA</p>
+      <h1>Security work that holds up under audit and under attack.</h1>
+      <p class="statement">
+        M.S. in Cybersecurity from CCNY, with five-plus years spanning security analysis, QA engineering,
+        and cloud infrastructure. I work across vulnerability assessment, incident response, and
+        compliance (GDPR, HIPAA, ISO 27001) — and increasingly at the intersection of machine learning
+        and security tooling.
+      </p>
+      <div class="cta-row">
+        <a class="btn" href="resume.pdf" target="_blank" rel="noopener">Download résumé</a>
+        <a class="btn ghost" href="#work">See the work</a>
+      </div>
+    </section>
+
+    <section id="work">
+      <h2>Work</h2>
+
+      <div class="entry">
+        <h3>Phishing URL Detection — M.S. Thesis</h3>
+        <p class="meta">Machine learning · adversarial robustness</p>
+        <p>
+          Built and evaluated phishing-URL classifiers across Logistic Regression, Random Forest, and
+          XGBoost, then stress-tested them against domain-mix adversarial conditions. Clean performance
+          reached AUC above 0.99 and F1 around 0.98–0.99, with XGBoost showing measurable F1 improvement
+          under adversarial defense — the part of the work I find most worth discussing.
+        </p>
+        <div class="tag-row">
+          <span class="tag">Python</span>
+          <span class="tag">XGBoost</span>
+          <span class="tag">Adversarial ML</span>
+        </div>
+        <div class="links">
+          <a href="https://github.com/tanzila-tabassum" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </div>
+
+      <div class="entry">
+        <h3>IPV Prevention Tool — Risk Assessment Modules</h3>
+        <p class="meta">NSF-funded research · John Jay College of Criminal Justice (CUNY)</p>
+        <p>
+          As Graduate Research Assistant, designed secure Azure infrastructure (IaaS/PaaS/SaaS) and CI/CD
+          pipelines for a prototype tool supporting intimate-partner-violence prevention research. Currently
+          applying prompt engineering to develop the tool's risk-assessment modules, iterating on LLM prompt
+          design to improve output accuracy for risk-detection use cases — this piece is still in progress.
+        </p>
+        <div class="tag-row">
+          <span class="tag">Azure</span>
+          <span class="tag">CI/CD</span>
+          <span class="tag">Prompt Engineering</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="publications">
+      <h2>Publications &amp; presentations</h2>
+      <div class="entry featured">
+        <h3>Developing a Digital Tool for Preventing Intimate Partner Violence: The Realtime Translational Impact</h3>
+        <p class="meta warm">Co-authored — presented at the 80th Annual Meeting of the American Society of Criminology, Washington, D.C., November 2025</p>
+        <p>
+          Work drawn from the NSF-funded IPV prevention research above, presented to a criminology and
+          policy audience alongside the tool's technical development.
+        </p>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>Skills</h2>
+      <div class="skill-cluster">
+        <div class="skill-row">
+          <div class="cat">Offensive security</div>
+          <div class="pills">
+            <span class="pill">Vulnerability Assessment</span>
+            <span class="pill">Penetration Testing</span>
+            <span class="pill">Nmap</span>
+            <span class="pill">Burp Suite</span>
+            <span class="pill">OWASP ZAP</span>
+          </div>
+        </div>
+        <div class="skill-row">
+          <div class="cat">Forensics &amp; IR</div>
+          <div class="pills">
+            <span class="pill">Incident Response</span>
+            <span class="pill">Digital Forensics</span>
+            <span class="pill">Autopsy</span>
+            <span class="pill">SIEM (Splunk)</span>
+          </div>
+        </div>
+        <div class="skill-row">
+          <div class="cat">Cloud &amp; DevSecOps</div>
+          <div class="pills">
+            <span class="pill">Azure</span>
+            <span class="pill">AWS</span>
+            <span class="pill">GCP</span>
+            <span class="pill">CI/CD</span>
+            <span class="pill">Azure DevOps</span>
+          </div>
+        </div>
+        <div class="skill-row">
+          <div class="cat">GRC &amp; compliance</div>
+          <div class="pills">
+            <span class="pill">GDPR</span>
+            <span class="pill">HIPAA</span>
+            <span class="pill">ISO 27001</span>
+            <span class="pill">ISO 13485</span>
+            <span class="pill">Risk Assessment</span>
+            <span class="pill">Compliance Auditing</span>
+          </div>
+        </div>
+        <div class="skill-row">
+          <div class="cat">Programming &amp; data</div>
+          <div class="pills">
+            <span class="pill">Python</span>
+            <span class="pill">XGBoost</span>
+            <span class="pill">Pandas</span>
+            <span class="pill">SQL</span>
+            <span class="pill">MySQL</span>
+            <span class="pill">MongoDB</span>
+          </div>
+        </div>
+        <div class="skill-row">
+          <div class="cat">Testing &amp; AI tooling</div>
+          <div class="pills">
+            <span class="pill">Selenium</span>
+            <span class="pill">Postman</span>
+            <span class="pill">JIRA</span>
+            <span class="pill">Prompt Engineering</span>
+            <span class="pill">Machine Learning</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2>Experience</h2>
+
+      <div class="timeline-item">
+        <div class="when">2025</div>
+        <div>
+          <h4>Graduate Research Assistant</h4>
+          <div class="org">Research Foundation CUNY — John Jay College</div>
+          <p>Azure infrastructure and CI/CD for an NSF-funded IPV prevention research tool; prompt engineering for its risk-assessment modules.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="when">2023–2024</div>
+        <div>
+          <h4>Cybersecurity Analyst &amp; Documentation Engineer</h4>
+          <div class="org">Sippa Solutions Inc.</div>
+          <p>Risk assessments and vulnerability scans across IT infrastructure; ISO 27001/13485 compliance and audits with zero major findings.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="when">2018–2021</div>
+        <div>
+          <h4>QA Engineer II</h4>
+          <div class="org">Brain Station 23 Ltd.</div>
+          <p>End-to-end test planning for pharmaceutical clients (US &amp; Europe); security and API testing with Postman and Burp Suite.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="beyond">
+      <h2>Beyond work</h2>
+      <div class="beyond-grid">
+        <div class="beyond-item">
+          <h4>Reading</h4>
+          <p>Usually somewhere between a few books at once.</p>
+          <p style="margin-top:0.5rem; font-size:0.85rem; color:var(--accent);">Currently reading: <em>Kafka on the Shore</em>, Haruki Murakami</p>
+        </div>
+        <div class="beyond-item">
+          <h4>Photography</h4>
+          <p>Finding frames on walks around the city.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2>Contact</h2>
+      <p>Open to cybersecurity, GRC, cloud security, and SOC roles — hybrid in NYC or fully remote.</p>
+      <div class="contact-links">
+        <a href="mailto:tanzila.tabassum.una@gmail.com">tanzila.tabassum.una@gmail.com</a>
+        <a href="https://linkedin.com/in/tanzilaspeaking" target="_blank" rel="noopener">linkedin.com/in/tanzilaspeaking</a>
+        <a href="https://github.com/tanzila-tabassum" target="_blank" rel="noopener">github.com/tanzila-tabassum</a>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  Tanzila Tabassum — updated 2026
+</footer>
+
+</body>
+</html>
